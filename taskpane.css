@@ -1,4 +1,5 @@
 :root{--ink:#080914;--muted:#4F557B;--line:#DCDCEC;--paper:#F5F4FA;--accent:#A047FA;--accent-ink:#7500C4;--wash:#EADFFF;--ok:#1F7A4D;--erro:#B42318}
+[hidden]{display:none!important}
 *{box-sizing:border-box}
 html,body{margin:0;background:#fff;color:var(--ink);font:14px/1.45 "Aptos","Segoe UI",system-ui,-apple-system,sans-serif}
 main{padding:16px 16px 8px}
