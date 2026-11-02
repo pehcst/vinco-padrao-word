@@ -1,0 +1,22 @@
+:root{--ink:#080914;--muted:#4F557B;--line:#DCDCEC;--paper:#F5F4FA;--accent:#A047FA;--accent-ink:#7500C4;--wash:#EADFFF;--ok:#1F7A4D;--erro:#B42318}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff;color:var(--ink);font:14px/1.45 "Aptos","Segoe UI",system-ui,-apple-system,sans-serif}
+main{padding:16px 16px 8px}
+.rotulo{margin:0;color:var(--accent-ink);font-weight:600;font-size:12px}
+h1{margin:4px 0 12px;font-size:20px;font-weight:600;line-height:1.2}
+.passos{margin:0 0 12px;padding-left:20px;color:var(--muted)}
+.passos li{margin-bottom:4px}
+.passos b{color:var(--ink)}
+kbd{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:4px;padding:0 4px;background:var(--paper)}
+textarea{width:100%;height:180px;resize:vertical;border:1px solid var(--line);border-radius:8px;padding:10px;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;color:var(--ink);background:var(--paper)}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px;background:#fff}
+button,.secundario{display:block;width:100%;margin-top:12px;border-radius:8px;padding:11px 12px;font:inherit;font-weight:600;text-align:center;cursor:pointer;text-decoration:none}
+.primario{background:var(--accent-ink);color:#fff;border:0}
+.primario:hover{background:#5f00a0}
+.primario:disabled{background:var(--line);color:var(--muted);cursor:default}
+.secundario{background:#fff;color:var(--accent-ink);border:1px solid var(--accent-ink)}
+#status{margin-top:12px;font-weight:600}
+#status.ok{color:var(--ok)} #status.erro{color:var(--erro)}
+#avisos{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:13px}
+#avisos li{margin-bottom:4px}
+footer{padding:8px 16px 16px;color:var(--muted);font-size:12px}

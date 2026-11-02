@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Padrão Vinco</title>
+  <link rel="stylesheet" href="taskpane.css">
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="core.js"></script>
+  <script src="taskpane.js" defer></script>
+</head>
+<body>
+  <main>
+    <p class="rotulo">Padrão Vinco</p>
+    <h1>Colar no padrão Vinco</h1>
+    <ol class="passos">
+      <li>No Copilot, clique em <b>Copiar</b> na resposta do agente Documentos Vinco.</li>
+      <li>Clique na caixa abaixo e cole (<kbd>Ctrl</kbd>+<kbd>V</kbd> ou <kbd>⌘</kbd>+<kbd>V</kbd>).</li>
+      <li>Clique em <b>Criar documento</b>.</li>
+    </ol>
+    <textarea id="texto" placeholder="Cole aqui o texto do Copilot" spellcheck="false"></textarea>
+    <button id="criar" class="primario" type="button">Criar documento</button>
+    <div id="status" role="status" aria-live="polite"></div>
+    <ul id="avisos"></ul>
+    <a id="baixar" class="secundario" hidden>Baixar o documento</a>
+  </main>
+  <footer>Funciona no Word online, no Windows e no Mac. O texto não sai do seu computador.</footer>
+</body>
+</html>

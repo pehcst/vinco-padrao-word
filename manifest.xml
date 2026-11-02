@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>6f1d2c7e-4b3a-4e8f-9a51-7c0d5e2b9a10</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Grupo Vinco</ProviderName>
+  <DefaultLocale>pt-BR</DefaultLocale>
+  <DisplayName DefaultValue="Padrão Vinco"/>
+  <Description DefaultValue="Cole o texto do Copilot e crie o documento no padrão Vinco, com capa, títulos e tabelas."/>
+  <IconUrl DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-64.png"/>
+  <SupportUrl DefaultValue="https://pehcst.github.io/vinco-padrao-word/taskpane.html"/>
+  <AppDomains><AppDomain>https://pehcst.github.io/vinco-padrao-word</AppDomain></AppDomains>
+  <Hosts><Host Name="Document"/></Hosts>
+  <Requirements><Sets DefaultMinVersion="1.1"><Set Name="WordApi" MinVersion="1.1"/></Sets></Requirements>
+  <DefaultSettings><SourceLocation DefaultValue="https://pehcst.github.io/vinco-padrao-word/taskpane.html"/></DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <FunctionFile resid="Vinco.Painel.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <OfficeTab id="TabHome">
+              <Group id="Vinco.Grupo">
+                <Label resid="Vinco.Grupo.Label"/>
+                <Icon><bt:Image size="16" resid="Vinco.Icone16"/><bt:Image size="32" resid="Vinco.Icone32"/><bt:Image size="80" resid="Vinco.Icone80"/></Icon>
+                <Control xsi:type="Button" id="Vinco.Colar">
+                  <Label resid="Vinco.Colar.Label"/>
+                  <Supertip><Title resid="Vinco.Colar.Label"/><Description resid="Vinco.Colar.Dica"/></Supertip>
+                  <Icon><bt:Image size="16" resid="Vinco.Icone16"/><bt:Image size="32" resid="Vinco.Icone32"/><bt:Image size="80" resid="Vinco.Icone80"/></Icon>
+                  <Action xsi:type="ShowTaskpane"><TaskpaneId>VincoPainel</TaskpaneId><SourceLocation resid="Vinco.Painel.Url"/></Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Vinco.Icone16" DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-16.png"/>
+        <bt:Image id="Vinco.Icone32" DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-32.png"/>
+        <bt:Image id="Vinco.Icone80" DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-80.png"/>
+      </bt:Images>
+      <bt:Urls><bt:Url id="Vinco.Painel.Url" DefaultValue="https://pehcst.github.io/vinco-padrao-word/taskpane.html"/></bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="Vinco.Grupo.Label" DefaultValue="Padrão Vinco"/>
+        <bt:String id="Vinco.Colar.Label" DefaultValue="Colar no padrão Vinco"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="Vinco.Colar.Dica" DefaultValue="Cole o texto do agente Documentos Vinco e crie o documento com capa, títulos e tabelas no padrão."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
