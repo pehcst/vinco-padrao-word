@@ -24,6 +24,14 @@ async function abrirNoWord(base64) {
   await Word.run(async (ctx) => { ctx.application.createDocument(base64).open(); await ctx.sync(); });
 }
 
+// Documento aberto vazio? Preenche ele mesmo (sem as mensagens do Word). Com texto, cria um novo para não apagar nada.
+async function documentoVazio() {
+  return Word.run(async (ctx) => { const b = ctx.document.body; b.load("text"); const t = b.getRange().inlinePictures; t.load("items"); const tb = b.tables; tb.load("items"); await ctx.sync(); return !b.text.trim() && !t.items.length && !tb.items.length; });
+}
+async function preencherAtual(base64) {
+  await Word.run(async (ctx) => { ctx.document.body.insertFileFromBase64(base64, "Replace"); await ctx.sync(); });
+}
+
 function oferecerDownload(base64) {
   const bytes = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
   const url = URL.createObjectURL(new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" }));
@@ -40,7 +48,13 @@ async function criar() {
     const lembretes = simples(r.avisos, texto);
     if (!r.temCabecalho) lembretes.unshift("Esse texto não veio do agente Documentos Vinco, então saiu um documento simples, sem capa.");
     if (noWord) {
-      try { await abrirNoWord(r.base64); status("Pronto! O documento abriu numa nova janela ou aba.", "ok"); }
+      let feito = false;
+      if (Office.context.requirements.isSetSupported("WordApi", "1.1")) {
+        try { if (await documentoVazio()) { await preencherAtual(r.base64); feito = true; status("Pronto! O documento está no padrão Vinco.", "ok"); } }
+        catch (e) { console.error("preencher atual", e); }
+      }
+      if (feito) {}
+      else try { await abrirNoWord(r.base64); status("Pronto! O documento abriu numa nova janela ou aba.", "ok"); }
       catch (e) { oferecerDownload(r.base64); status("O documento está pronto. Clique em Baixar o documento.", "ok"); console.error(e); }
     } else { oferecerDownload(r.base64); status("O documento está pronto. Clique em Baixar o documento.", "ok"); }
     avisos(lembretes);
