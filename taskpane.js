@@ -41,7 +41,7 @@ function oferecerDownload(base64) {
 async function criar() {
   const texto = $("texto").value;
   $("baixar").hidden = true; avisos([]);
-  if (!texto.trim()) { status("Você ainda não colou nada. Copie a resposta no Copilot e cole na caixa acima.", "erro"); $("texto").focus(); return; }
+  if (!texto.trim()) { status("Você ainda não colou nada. Cole o texto na caixa e tente de novo.", "erro"); $("texto").focus(); return; }
   $("criar").disabled = true; status("Criando o documento…");
   try {
     const r = await VincoCore.gerarDocumento(texto);
@@ -60,5 +60,43 @@ async function criar() {
   } finally { $("criar").disabled = false; }
 }
 
+// Lê o documento aberto inteiro (.docx) pela API do Office, em pedaços
+function lerDocumentoAberto() {
+  return new Promise((ok, erro) => {
+    Office.context.document.getFileAsync(Office.FileType.Compressed, { sliceSize: 4194304 }, (r) => {
+      if (r.status !== Office.AsyncResultStatus.Succeeded) return erro(r.error);
+      const arq = r.value, partes = [];
+      let lidos = 0;
+      const fim = (e) => { arq.closeAsync(); e ? erro(e) : ok(new Uint8Array(partes.flat())); };
+      const proximo = (i) => arq.getSliceAsync(i, (s) => {
+        if (s.status !== Office.AsyncResultStatus.Succeeded) return fim(s.error);
+        partes[i] = Array.from(s.value.data); lidos++;
+        lidos === arq.sliceCount ? fim() : proximo(i + 1);
+      });
+      proximo(0);
+    });
+  });
+}
+
+async function formatar() {
+  $("baixar").hidden = true; avisos([]);
+  if (!noWord) { status("Abra este painel pelo botão Padrão Vinco, dentro do Word.", "erro"); return; }
+  $("formatar").disabled = true; status("Lendo o documento…");
+  try {
+    const bytes = await lerDocumentoAberto();
+    status("Aplicando o padrão Vinco…");
+    const r = await VincoCore.formatarDocx(bytes);
+    const lembretes = simples(r.avisos, r.markdown);
+    if (!r.capitulos) lembretes.unshift("Não achei títulos de capítulo: o documento saiu simples, sem capa. Marque os títulos (estilo Título 1 ou negrito) e formate de novo.");
+    try { await abrirNoWord(r.base64); status("Pronto! A versão no padrão Vinco abriu numa nova janela ou aba.", "ok"); }
+    catch (e) { console.error(e); oferecerDownload(r.base64); status("O documento está pronto. Clique em Baixar o documento.", "ok"); }
+    avisos(lembretes);
+  } catch (e) {
+    console.error(e);
+    status("Não consegui ler este documento. Salve o arquivo e tente de novo.", "erro");
+  } finally { $("formatar").disabled = false; }
+}
+
+$("formatar").addEventListener("click", formatar);
 $("criar").addEventListener("click", criar);
 if (window.Office) Office.onReady((info) => { noWord = info.host === Office.HostType.Word && Office.context.requirements.isSetSupported("WordApi", "1.3"); });

@@ -21,3 +21,10 @@ button,.secundario{display:block;width:100%;margin-top:12px;border-radius:8px;pa
 #avisos{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:13px}
 #avisos li{margin-bottom:4px}
 footer{padding:8px 16px 16px;color:var(--muted);font-size:12px}
+.sub{margin:0 0 12px;color:var(--muted)}
+details{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:600;color:var(--accent-ink)}
+details ul{margin:8px 0 0;padding-left:18px;color:var(--muted);font-size:13px}
+details ul li{margin-bottom:4px}
+details textarea{margin-top:4px;height:140px}
+.secundario-btn{background:#fff;color:var(--accent-ink);border:1px solid var(--accent-ink)}

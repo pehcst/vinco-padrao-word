@@ -4,26 +4,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Padrão Vinco</title>
-  <link rel="stylesheet" href="taskpane.css?v=02e36a33">
+  <link rel="stylesheet" href="taskpane.css?v=4e449d71">
   <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
-  <script src="core.js?v=99634e7e"></script>
-  <script src="taskpane.js?v=a06ed68b" defer></script>
+  <script src="core.js?v=f7e44b09"></script>
+  <script src="taskpane.js?v=abf9e8c5" defer></script>
 </head>
 <body>
   <main>
     <p class="rotulo">Padrão Vinco</p>
-    <h1>Colar no padrão Vinco</h1>
-    <ol class="passos">
-      <li>No Copilot, clique em <b>Copiar</b> na resposta do agente Documentos Vinco.</li>
-      <li>Clique na caixa abaixo e cole (<kbd>Ctrl</kbd>+<kbd>V</kbd> ou <kbd>⌘</kbd>+<kbd>V</kbd>).</li>
-      <li>Clique em <b>Criar documento</b>.</li>
-    </ol>
-    <textarea id="texto" placeholder="Cole aqui o texto do Copilot" spellcheck="false"></textarea>
-    <button id="criar" class="primario" type="button">Criar documento</button>
+    <h1>Formatar no padrão Vinco</h1>
+    <p class="sub">Deixa o documento aberto no padrão da Vinco: capa, títulos, listas, tabelas, cabeçalho e marca d'água. O texto não muda.</p>
+    <button id="formatar" class="primario" type="button">Formatar este documento</button>
     <div id="status" role="status" aria-live="polite"></div>
     <ul id="avisos"></ul>
     <a id="baixar" class="secundario" hidden>Baixar o documento</a>
+
+    <details class="dica">
+      <summary>Para sair perfeito</summary>
+      <ul>
+        <li>Marque os títulos: estilo <b>Título 1</b> e <b>Título 2</b>, ou ao menos uma linha curta em negrito.</li>
+        <li>Use listas e tabelas do Word (ou linhas começando com "-" e "1.").</li>
+        <li>Escreva "Tabela: nome" em cima da tabela e "Fonte: ..." embaixo.</li>
+        <li>Texto corrido, sem nenhum título, vira um documento simples, sem capa.</li>
+      </ul>
+    </details>
+
+    <details class="colar">
+      <summary>Colar um texto em vez de formatar</summary>
+      <p class="sub">Cole aqui um texto (do Copilot, de um e-mail, de outro arquivo) para criar um documento Vinco novo.</p>
+      <textarea id="texto" placeholder="Cole o texto aqui" spellcheck="false"></textarea>
+      <button id="criar" class="secundario-btn" type="button">Criar documento com este texto</button>
+    </details>
   </main>
-  <footer>Funciona no Word online, no Windows e no Mac. O texto não sai do seu computador.</footer>
+  <footer>Funciona no Word online, no Windows e no Mac. O documento original não muda: a versão Vinco abre como um arquivo novo.</footer>
 </body>
 </html>

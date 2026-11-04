@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
   <Id>6f1d2c7e-4b3a-4e8f-9a51-7c0d5e2b9a10</Id>
-  <Version>1.0.0.0</Version>
+  <Version>1.1.0.0</Version>
   <ProviderName>Grupo Vinco</ProviderName>
   <DefaultLocale>pt-BR</DefaultLocale>
   <DisplayName DefaultValue="Padrão Vinco"/>
-  <Description DefaultValue="Cole o texto do Copilot e crie o documento no padrão Vinco, com capa, títulos e tabelas."/>
+  <Description DefaultValue="Formata qualquer documento do Word no padrão Vinco, com um clique."/>
   <IconUrl DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://pehcst.github.io/vinco-padrao-word/icone-64.png"/>
   <SupportUrl DefaultValue="https://pehcst.github.io/vinco-padrao-word/taskpane.html"/>
@@ -45,10 +45,10 @@
       <bt:Urls><bt:Url id="Vinco.Painel.Url" DefaultValue="https://pehcst.github.io/vinco-padrao-word/taskpane.html"/></bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Vinco.Grupo.Label" DefaultValue="Padrão Vinco"/>
-        <bt:String id="Vinco.Colar.Label" DefaultValue="Colar no padrão Vinco"/>
+        <bt:String id="Vinco.Colar.Label" DefaultValue="Formatar no padrão Vinco"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="Vinco.Colar.Dica" DefaultValue="Cole o texto do agente Documentos Vinco e crie o documento com capa, títulos e tabelas no padrão."/>
+        <bt:String id="Vinco.Colar.Dica" DefaultValue="Deixa o documento aberto no padrão Vinco: capa, títulos, listas, tabelas, cabeçalho e marca d&apos;água."/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
