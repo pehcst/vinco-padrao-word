@@ -48,13 +48,9 @@ async function criar() {
     const lembretes = simples(r.avisos, texto);
     if (!r.temCabecalho) lembretes.unshift("Esse texto não veio do agente Documentos Vinco, então saiu um documento simples, sem capa.");
     if (noWord) {
-      let feito = false;
-      if (Office.context.requirements.isSetSupported("WordApi", "1.1")) {
-        try { if (await documentoVazio()) { await preencherAtual(r.base64); feito = true; status("Pronto! O documento está no padrão Vinco.", "ok"); } }
-        catch (e) { console.error("preencher atual", e); }
-      }
-      if (feito) {}
-      else try { await abrirNoWord(r.base64); status("Pronto! O documento abriu numa nova janela ou aba.", "ok"); }
+      // Preencher o documento aberto (preencherAtual) foi testado em 04/11: no Word online não traz cabeçalho, rodapé,
+      // marca d'água nem sumário. Por isso o documento novo continua sendo o caminho padrão.
+      try { await abrirNoWord(r.base64); status("Pronto! O documento abriu numa nova janela ou aba.", "ok"); }
       catch (e) { oferecerDownload(r.base64); status("O documento está pronto. Clique em Baixar o documento.", "ok"); console.error(e); }
     } else { oferecerDownload(r.base64); status("O documento está pronto. Clique em Baixar o documento.", "ok"); }
     avisos(lembretes);
